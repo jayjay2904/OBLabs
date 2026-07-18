@@ -1,0 +1,2 @@
+import { Eyebrow } from "./ui";
+export function LegalPage({title,children}:{title:string;children:React.ReactNode}){return <div className="page-shell"><section className="page-hero"><div className="container legal"><Eyebrow>Legal</Eyebrow><h1>{title}</h1><p className="lede">Draft placeholder · Requires legal review before publication.</p></div></section><section className="content-section"><div className="container legal">{children}<p><strong>Status:</strong> This page is intentionally not presented as approved legal advice or final company policy.</p></div></section></div>}
