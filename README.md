@@ -28,6 +28,7 @@ The contact form currently validates in the browser but does not transmit or sto
 
 ## Before launch
 
+- Request production-ready Jasper Blue exports of the OB Labs mark and full logo. The supplied SVG files embed raster artwork, so the approved originals remain unchanged while surrounding website treatments use the new palette.
 - Supply and approve John’s founder biography and portrait.
 - Replace the legal placeholders with reviewed privacy, cookie and terms copy.
 - Configure and test contact-form delivery and abuse protection.
