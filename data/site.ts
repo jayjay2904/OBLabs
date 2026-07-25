@@ -51,7 +51,7 @@ export const products: Product[] = [
     positioning: "An AI companion designed to remember who you are when you’ve forgotten.",
     promise: "Feel understood. Take one tiny step. Come back tomorrow.",
     summary: "Gentle conversational support for people with ADHD, designed to reduce friction without adding another system to manage.",
-    status: "In development · Early testing",
+    status: "Available now · Android",
     audience: "For people with ADHD who need practical support that adapts to the day they are actually having.",
     problem: "Traditional productivity tools often ask for planning, upkeep and attention before they can help—the exact resources that may already be stretched.",
     approach: "Arlo explores how natural conversation, memory and gentle prompts can make the next useful step feel smaller and more possible.",
