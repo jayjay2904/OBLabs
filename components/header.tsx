@@ -20,7 +20,7 @@ export function Header() {
       <button className="menu-button" aria-expanded={open} aria-controls="primary-nav" onClick={() => setOpen(!open)}><span /><span /><span className="sr-only">Toggle menu</span></button>
       <nav id="primary-nav" className={open ? "nav-open" : ""} aria-label="Primary navigation">
         {navigation.map((item) => <Link key={item.label} href={item.href} onClick={() => setOpen(false)}>{item.label}</Link>)}
-        <Link className="button button-small" href="/contact" onClick={() => setOpen(false)}>Get in touch <span>↗</span></Link>
+        <Link className="button button-small" href="/#download" onClick={() => setOpen(false)}>Meet Arlo <span>↗</span></Link>
       </nav>
     </div>
   </header>;
