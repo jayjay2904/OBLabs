@@ -33,7 +33,7 @@ export const products: Product[] = [
   {
     slug: "cueiq",
     name: "CueIQ",
-    number: "01",
+    number: "02",
     positioning: "The world’s simplest and smartest AI pool coach.",
     promise: "Make one better decision every visit.",
     summary: "Helping pool players read the table, understand their options and practise with purpose through clear AI-assisted coaching.",
@@ -47,11 +47,11 @@ export const products: Product[] = [
   {
     slug: "arlo",
     name: "Arlo",
-    number: "02",
+    number: "01",
     positioning: "An AI companion designed to remember who you are when you’ve forgotten.",
     promise: "Feel understood. Take one tiny step. Come back tomorrow.",
     summary: "Gentle conversational support for people with ADHD, designed to reduce friction without adding another system to manage.",
-    status: "In development · Early testing",
+    status: "Available now · Android",
     audience: "For people with ADHD who need practical support that adapts to the day they are actually having.",
     problem: "Traditional productivity tools often ask for planning, upkeep and attention before they can help—the exact resources that may already be stretched.",
     approach: "Arlo explores how natural conversation, memory and gentle prompts can make the next useful step feel smaller and more possible.",
