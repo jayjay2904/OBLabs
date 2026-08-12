@@ -10,8 +10,11 @@ export function SectionIntro({ eyebrow, title, text, align = "left" }: { eyebrow
 
 export function Status({ children }: { children: React.ReactNode }) { return <span className="status"><i />{children}</span>; }
 
+const heroImages: Record<string, string> = { arlo: "/arlo/meet-arlo-hero.png", cueiq: "/cueiq/meet-cueiq-hero.png" };
+
 export function ProductVisual({ slug, name, number }: { slug: string; name: string; number: string }) {
-  if (slug === "arlo") return <div className={`product-visual visual-${slug}`} aria-hidden="true"><Image src="/arlo/meet-arlo-hero.png" alt="" fill sizes="(max-width:900px) 92vw, 560px" className="product-visual-image" /><span className="visual-number">{number}</span></div>;
+  const hero = heroImages[slug];
+  if (hero) return <div className={`product-visual visual-${slug}`} aria-hidden="true"><Image src={hero} alt="" fill sizes="(max-width:900px) 92vw, 560px" className="product-visual-image" /><span className="visual-number">{number}</span></div>;
   return <div className={`product-visual visual-${slug}`} aria-hidden="true"><div className="visual-grid"/><span className="visual-number">{number}</span><div className="visual-orbit"><LineIcon name={slug} size={44}/></div><strong>{name}</strong><span className="visual-line" /></div>;
 }
 
