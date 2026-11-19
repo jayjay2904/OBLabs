@@ -5,6 +5,7 @@ import { Header } from "@/components/header";
 import { site } from "@/data/site";
 import "./globals.css";
 import "./arlo-product.css";
+import "./cueiq-product.css";
 
 const space = Space_Grotesk({ subsets: ["latin"], variable: "--font-space", display: "swap" });
 
