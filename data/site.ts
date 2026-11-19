@@ -40,8 +40,8 @@ export const products: Product[] = [
     status: "In development",
     audience: "For pool players who want to understand why a shot works, not just whether it went in.",
     problem: "Knocking balls around is fun, but it isn’t always the fastest way to improve. Most tools focus on isolated shots rather than the angles, cue-ball control and position that connect them.",
-    approach: "CueIQ combines AI-powered shot analysis, structured training and practical match tools in one app, showing where to aim, how to strike the cue ball, how much power to use and where it should finish up next.",
-    capabilities: ["Analyse a table from a single photo", "Recommend the best shot, not just a potted ball", "Show how to strike the cue ball and how hard", "Visualise where the cue ball finishes next", "Practise with progressive, purposeful drills", "Track scoring, matches and the shot clock"],
+    approach: "CueIQ combines AI-powered shot analysis, structured training, a Shot Lab for trying any shot yourself and practical match tools in one app, showing where to aim, how to strike the cue ball, how much power to use and where it should finish up next.",
+    capabilities: ["Analyse a table from a single photo", "Recommend the best shot, not just a potted ball", "Show how to strike the cue ball and how hard", "Visualise where the cue ball finishes next", "Practise with progressive, purposeful drills", "Try any shot in the Shot Lab and see what the physics predicts", "Watch shots from above or from the player’s eye", "Learn spin, stance and cue-ball control from clear guides", "Track scoring, matches and the shot clock"],
     principles: [{ title: "Explain, don’t prescribe", text: "Coaching should build understanding, not just tell you where to aim." }, { title: "Think beyond the next shot", text: "Every recommendation considers angles, cue-ball control and the route around the table." }, { title: "Practise with purpose", text: "Progressive drills replace random exercises with focused, repeatable improvement." }],
   },
   {
