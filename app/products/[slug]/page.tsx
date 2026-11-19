@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { CTA, Eyebrow, ProductVisual, SectionIntro, Status } from "@/components/ui";
 import { ArloProductPage } from "@/components/arlo-product-page";
+import { CueIqProductPage } from "@/components/cueiq-product-page";
 import { products } from "@/data/site";
 
 export function generateStaticParams() { return products.map((product) => ({ slug: product.slug })); }
@@ -16,6 +17,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     description: "Support that understands. Not another productivity app. Just one better step, every day.",
     openGraph: { images: [{ url: "/arlo/meet-arlo-hero.png", width: 1792, height: 1024, alt: "Meet Arlo, your AI companion for ADHD" }] },
   };
+  if (slug === "cueiq") return {
+    title: "Meet CueIQ — Your AI-Powered Pool Coach",
+    description: "Photograph a table and see the shot. Practise with drills built on real physics, try any shot in the Shot Lab and keep score in the Match Centre. Coming soon to Android.",
+    openGraph: { images: [{ url: "/cueiq/meet-cueiq-hero.png", width: 1796, height: 876, alt: "Meet CueIQ, your AI-powered pool coach" }] },
+  };
   return { title: product.name, description: product.positioning };
 }
 
@@ -24,6 +30,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const product = products.find((item) => item.slug === slug);
   if (!product) notFound();
   if (slug === "arlo") return <ArloProductPage />;
+  if (slug === "cueiq") return <CueIqProductPage />;
 
   return <div className="page-shell">
     <section className="product-page-hero"><div className="container product-page-hero-grid"><div><Status>{product.status}</Status><h1>{product.name}</h1><p className="positioning">{product.positioning}</p><p className="promise">{product.promise}</p><div className="button-row" style={{ marginTop: 32 }}><Link className="button" href="/contact">Follow the journey <span>↗</span></Link><Link className="button button-ghost" href="/products">All products <span>→</span></Link></div></div><ProductVisual slug={product.slug} name={product.name} number={product.number} square /></div></section>
