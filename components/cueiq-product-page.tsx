@@ -3,7 +3,7 @@ import Link from "next/link";
 
 // Copy here describes what the app does today. Keep it honest: no dates, prices or accuracy claims.
 
-const strip = ["Built for English-style 8-ball", "No account to create", "Scores and progress stay on your phone", "Android first"];
+const strip = ["Built for league players, on International Rules", "No account to create", "Scores and progress stay on your phone", "Android first"];
 
 const reasons = [
   ["Explains, not just instructs", "Every recommendation comes with the reasoning, so you build understanding instead of following arrows."],
@@ -11,31 +11,35 @@ const reasons = [
   ["Practice with purpose", "Drills teach one thing at a time and get harder as you improve, replacing random knocking about."],
 ] as const;
 
-type Centre = { id: string; label: string; title: string; text: string; points: string[]; visual: "route" | "drill" | "lab" | "match"; note?: string };
+type Screen = { src: string; alt: string };
+
+const shot = (name: string, alt: string): Screen => ({ src: `/cueiq/app/${name}.jpg`, alt });
+
+type Centre = { id: string; label: string; title: string; text: string; points: string[]; screens: Screen[]; note?: string };
 
 const centres: Centre[] = [
   {
-    id: "analysis", label: "Analysis Centre", visual: "route",
+    id: "analysis", label: "Analysis Centre", screens: [shot("analysis-reading", "The Analysis Centre reading a table photo, with the rules and your balls chosen below"), shot("analysis-sequence", "The shot sequence: each shot with its instruction, power, where to strike the cue ball and the reasoning")],
     title: "One photo. A plan for the whole table.",
     text: "Photograph the table, choose the rules and which balls are yours, and CueIQ reads the layout and works out a route around it.",
     points: ["Finds the balls, the cushions and all six pockets from a single photo", "Recommends your first shot and explains why it is the right one", "Plans the cue-ball position for the shot after, and warns what to watch out for", "Lays out the whole route ball by ball, with a tip for each shot", "Plays the route back as an animation, checked with real physics"],
     note: "The table reading is an estimate. CueIQ shows how confident it is, and you can check the reconstruction against the real table before you rely on it.",
   },
   {
-    id: "training", label: "Training Centre", visual: "drill",
+    id: "training", label: "Training Centre", screens: [shot("training-centre", "The Training Centre with its drill categories"), shot("drill-top-view", "A drill played from above, with the cue ball guide and power bar")],
     title: "Drills that teach one thing at a time.",
-    text: "Dozens of drills from beginner to advanced, grouped by what they teach: fundamentals, cue-ball control, pattern play and position practice.",
+    text: "Thirty drills in five categories, from fundamentals to progressive practice, each teaching one thing at a time.",
     points: ["Every drill is an animated demonstration with the aim line, ghost ball and target zone", "A floating cue ball shows exactly where to strike it, and a power bar shows how hard", "Progressive drills have levels that make the same skill steadily harder", "Search and filter by type, skill or progress", "Record your progress and watch your mastery grow by category"],
   },
   {
-    id: "shot-lab", label: "Shot Lab", visual: "lab",
+    id: "shot-lab", label: "Shot Lab", screens: [shot("shotlab-top-view", "The Shot Lab from above, previewing where the white and the red will go"), shot("shotlab-try-a-shot", "The Shot Lab's three-step instructions over the table")],
     title: "Set it up. See what happens.",
     text: "Put any shot on the table yourself and see what the physics predicts before you take it.",
     points: ["Drag to aim, and drag the balls to wherever you like", "Choose the power, and where to hit the cue ball: follow, draw or side spin", "A live preview shows the white's path, the ghost ball and where each ball goes next", "Tap Shoot to watch it played, from above or from the player's eye", "Powered by the same physics engine as the drills"],
     note: "The Shot Lab shows what the physics engine predicts. Real tables, cloth and cues vary, so use it to understand a shot, not as a promise.",
   },
   {
-    id: "match", label: "Match Centre", visual: "match",
+    id: "match", label: "Match Centre", screens: [shot("match-scoreboard", "The Match Centre scoreboard with a player card for each side"), shot("match-options", "The Match Centre options: coin toss, match statistics and history")],
     title: "Scoring that keeps up with your game.",
     text: "A proper scoreboard for the match you are actually playing, with the history to look back on afterwards.",
     points: ["Race to 3, 5, 7, 10 or your own target, best of 5, 7 or 11, or just play casually", "Save your opponents and see your record against each of them", "Tap a player to award the frame, and undo if you slip", "Keep a tally of 8 balls cleared in a visit, and see it in your stats", "A shot clock with 30, 45 or 60 second timers and extensions", "A coin toss to settle who breaks", "Match statistics: matches played, win rate and frames won and lost", "Every completed match saved to a history, and an unfinished match you can resume"],
@@ -63,28 +67,20 @@ const guides: Guide[] = [
 const faqs = [
   ["When can I get it?", "CueIQ is heading to Android first. Follow the journey or get in touch and we will let you know when it is ready."],
   ["Do I need an account?", "No. CueIQ does not ask you to create one."],
-  ["Which rules does it use?", "CueIQ is built for English-style 8-ball, with reds, yellows and the black. In the Analysis Centre you choose the rules and which balls are yours."],
+  ["Which rules does it use?", "CueIQ currently uses International Rules, with reds, yellows and the black. In the Analysis Centre you choose the rules and which of the balls are yours."],
   ["Does it work without a photo?", "Yes. The Training Centre, the Shot Lab and the Match Centre do not need a photo at all, and they run on your phone. Only the Analysis Centre needs an internet connection, to read your photo."],
   ["How accurate is the table reading?", "No reading of a photo is perfect. CueIQ shows how confident it is, and you can check the reconstruction against the real table before you rely on the route."],
   ["What happens to my table photo?", "It is sent securely to CueIQ's analysis service, read, and turned into a result. CueIQ does not keep the photo. Match scores and drill progress stay on your phone."],
   ["Does the Shot Lab guarantee the result?", "No. It shows what the physics engine predicts. Real tables, cloth and cues vary, so it is there to help you understand a shot."],
 ] as const;
 
-function Phone({ src, alt }: { src: string; alt: string }) {
-  return <div className="cqPhone"><div className="cqPhoneScreen"><Image src={src} alt={alt} width={820} height={1080} sizes="(max-width:900px) 70vw, 340px" /></div></div>;
+function Phone({ src, alt, priority }: Screen & { priority?: boolean }) {
+  return <div className="cqPhone"><div className="cqPhoneScreen"><Image src={src} alt={alt} width={540} height={1054} priority={priority} sizes="(max-width:900px) 45vw, 230px" /></div></div>;
 }
 
-function MatchMock() {
-  return <div className="cqPhone" role="img" aria-label="Illustration of the Match Centre: a scoreboard for a race to 5, with a shot clock"><div className="cqPhoneScreen cqMatch" aria-hidden="true">
-    <div className="cqMatchTop"><span>Match</span><b>Race to 5</b><span>Options</span></div>
-    <div className="cqMatchCards">
-      <div className="cqMatchCard"><small>You</small><strong>3</strong><em>8 Ball · 1</em></div>
-      <div className="cqMatchCard"><small>Alex</small><strong>2</strong><em>8 Ball · 0</em></div>
-    </div>
-    <div className="cqMatchClock"><span>Shot clock</span><b>0:24</b></div>
-    <div className="cqMatchBar"><span>Coin toss</span><span>Shot clock</span><span>History</span></div>
-    <p>Tap a player card to award the frame</p>
-  </div></div>;
+// Two phones side by side, the second dropped a little, so a row of screens reads as a pair rather than a copy.
+function Duo({ screens, priority }: { screens: Screen[]; priority?: boolean }) {
+  return <div className="cqDuo">{screens.map(screen => <Phone key={screen.src} {...screen} priority={priority} />)}</div>;
 }
 
 export function CueIqProductPage() {
@@ -97,7 +93,7 @@ export function CueIqProductPage() {
         <p>Photograph a table and see the shot. Practise it with drills built on real physics. Try any shot yourself. Keep score when it counts.</p>
         <div className="button-row"><Link className="button cqButton" href="/contact">Follow the journey <span>↗</span></Link><a className="button cqGhost" href="#inside">See what&apos;s inside <span>↓</span></a></div>
       </div>
-      <div className="cqHeroVisual"><Phone src="/cueiq/screens/shot-lab.png" alt="The CueIQ Shot Lab seen from the player's eye, with the path of a shot previewed on the table" /></div>
+      <div className="cqHeroVisual"><Duo priority screens={[shot("home", "The CueIQ home screen: Analysis, Training, Shot Lab and Match Centre"), shot("route-players-view", "A route around the table in the player's eye view, with the shot previewed")]} /></div>
     </div></section>
 
     <section className="cqStrip"><div className="container">{strip.map(item => <span key={item}>{item}</span>)}</div></section>
@@ -116,19 +112,14 @@ export function CueIqProductPage() {
           <ul>{centre.points.map(point => <li key={point}>{point}</li>)}</ul>
           {centre.note ? <p className="cqNote">{centre.note}</p> : null}
         </div>
-        <div className="cqCentreVisual">
-          {centre.visual === "route" ? <Phone src="/cueiq/screens/route.png" alt="A route around the table in the player's eye view, with each ball numbered in the order to pot it" /> : null}
-          {centre.visual === "drill" ? <Phone src="/cueiq/screens/drill.png" alt="A drill shown from the player's eye, with the aim line, ghost ball and target zone" /> : null}
-          {centre.visual === "lab" ? <Phone src="/cueiq/screens/shot-lab.png" alt="The Shot Lab previewing a shot on the table" /> : null}
-          {centre.visual === "match" ? <MatchMock /> : null}
-        </div>
+        <div className="cqCentreVisual"><Duo screens={centre.screens} /></div>
       </article>)}
     </div></section>
 
-    <section className="cqSection cqEye"><div className="container cqSplit">
+    <section className="cqSection cqEye"><div className="container"><div className="cqSplit">
       <div><p className="cqLabel">The player&apos;s eye</p><h2>Stand where the player stands.</h2></div>
       <div className="cqBody"><p>Every drill, route and Shot Lab shot can be switched from the view from above to the view from behind the cue ball, looking down the line of the shot, the way you see it when you are bent over the table.</p><p>It is a quick way to learn what a shot actually looks like at the table, and to see where the cue ball is going before you take it.</p></div>
-    </div></section>
+    </div><div className="cqEyeShots"><Duo screens={[shot("drill-players-view", "A drill from the player’s eye, behind the cue ball"), shot("shotlab-players-view", "The Shot Lab from the player’s eye, with the shot previewed")]} /></div></div></section>
 
     <section className="cqSection cqSteps"><div className="container">
       <div className="cqHeading"><p className="cqLabel">How it works</p><h2>From photo to better shot in three steps.</h2></div>
@@ -136,7 +127,7 @@ export function CueIqProductPage() {
     </div></section>
 
     <section id="how-to" className="cqSection"><div className="container">
-      <div className="cqHeading"><p className="cqLabel">How to use CueIQ</p><h2>Everything you need to get started.</h2><p className="cqLead">Guides like these are built into the app too, so help is always one tap away.</p></div>
+      <div className="cqHowHead"><div className="cqHeading"><p className="cqLabel">How to use CueIQ</p><h2>Everything you need to get started.</h2><p className="cqLead">Guides like these are built into the app too, so help is always one tap away.</p></div><Phone {...shot("how-to-use", "The How to use CueIQ list inside the app")} /></div>
       <div className="cqGuides">{guides.map(guide => <details className="cqGuide" key={guide.title}>
         <summary>{guide.title}<span aria-hidden="true">+</span></summary>
         {guide.intro ? <p className="cqGuideIntro">{guide.intro}</p> : null}
