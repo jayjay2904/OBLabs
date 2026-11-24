@@ -9,15 +9,15 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <LegalPage title="Privacy policy" updated="23 November 2026">
+    <LegalPage title="Privacy policy" updated="24 November 2026">
       <p>
         This policy explains what information the CueIQ app and this website handle, what happens to it, and the
         choices you have. It is written to be read. If anything is unclear, email{" "}
         <a href={`mailto:${site.email}`}>{site.email}</a>.
       </p>
       <p>
-        <strong>Who we are:</strong> One Better Labs (“we”, “us”) makes CueIQ and runs this website. We decide how the
-        information described below is used.
+        <strong>Who we are:</strong> One Better Labs (“we”, “us”) is a sole trader business that makes CueIQ and runs
+        this website. We decide how the information described below is used.
       </p>
 
       <h2 id="cueiq">The CueIQ app</h2>
@@ -67,8 +67,9 @@ export default function Page() {
         </li>
       </ul>
       <p>
-        A table photo can occasionally include people. The photo is only used to read the table and is not kept, but
-        where you can, please frame the photo on the table and avoid including other people’s faces.
+        A table photo can occasionally include people. The photo is only used to read the table and is not kept. You
+        are responsible for the photos you take and send with CueIQ, including making sure anyone in a photo is happy
+        for it to be taken. Where you can, please frame the photo on the table and avoid including other people.
       </p>
 
       <h3>Technical logs</h3>
@@ -82,6 +83,10 @@ export default function Page() {
         Our server is hosted by Render (render.com), which, as the hosting provider, keeps its own request logs that
         can include IP addresses. Render keeps these for a limited time (no more than 30 days). We use them only for
         security and keeping the service running.
+      </p>
+      <p>
+        The server may be located outside the UK. Photos are only processed there, in memory, and are never stored, so
+        no photos are held outside your phone.
       </p>
 
       <h3>What stays on your phone</h3>
