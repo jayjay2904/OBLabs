@@ -2,7 +2,7 @@ export const site = {
   name: "One Better Labs",
   shortName: "OB Labs",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://onebetterlabs.co.uk",
-  email: process.env.CONTACT_EMAIL ?? "john@onebetterlabs.co.uk",
+  email: process.env.CONTACT_EMAIL ?? "CueIQ_Info@mail.com",
   description: "Building AI products that help people make one better decision.",
 };
 
