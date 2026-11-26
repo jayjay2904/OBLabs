@@ -19,10 +19,10 @@ type Centre = { id: string; label: string; title: string; text: string; points: 
 
 const centres: Centre[] = [
   {
-    id: "analysis", label: "Analysis Centre", screens: [shot("analysis-reading", "The Analysis Centre reading a table photo, with the rules and your balls chosen below"), shot("analysis-sequence", "The shot sequence: each shot with its instruction, power, where to strike the cue ball and the reasoning")],
+    id: "analysis", label: "Analysis Centre", screens: [shot("analysis-reading", "The Analysis Centre reading a table photo"), shot("analysis-sequence", "The shot sequence: each shot with its instruction, power, where to strike the cue ball and the reasoning")],
     title: "One photo. A plan for the whole table.",
-    text: "Photograph the table, choose the rules and which balls are yours, and CueIQ reads the layout and works out a route around it.",
-    points: ["Finds the balls, the cushions and all six pockets from a single photo", "Recommends your first shot and explains why it is the right one", "Plans the cue-ball position for the shot after, and warns what to watch out for", "Lays out the whole route ball by ball, with a tip for each shot", "Plays the route back as an animation, checked with real physics"],
+    text: "Photograph the table, say whether you are on reds or yellows, and CueIQ reads the layout and works out a route around it.",
+    points: ["Finds the balls, the cushions and all six pockets from a single photo", "Recommends your first shot and explains why it is the right one", "Plans the cue-ball position for the shot after, and warns what to watch out for", "Lays out the whole route ball by ball, with a tip for each shot", "Plays the route back as an animation, checked with real physics", "Lets you check the other colour from the same photo with one tap"],
     note: "The table reading is an estimate. CueIQ shows how confident it is, and you can check the reconstruction against the real table before you rely on it.",
   },
   {
@@ -32,7 +32,7 @@ const centres: Centre[] = [
     points: ["Every drill is an animated demonstration with the aim line, ghost ball and target zone", "A floating cue ball shows exactly where to strike it, and a power bar shows how hard", "Progressive drills have levels that make the same skill steadily harder", "Search and filter by type, skill or progress", "Record your progress and watch your mastery grow by category"],
   },
   {
-    id: "shot-lab", label: "Shot Lab", screens: [shot("shotlab-top-view", "The Shot Lab from above, previewing where the white and the red will go"), shot("shotlab-try-a-shot", "The Shot Lab's three-step instructions over the table")],
+    id: "shot-lab", label: "Shot Lab", screens: [shot("shotlab-top-view", "The Shot Lab from above, previewing where the white and the red will go"), shot("shotlab-try-a-shot", "The Shot Lab's three-step instructions over the table in the player's view")],
     title: "Set it up. See what happens.",
     text: "Put any shot on the table yourself and see what the physics predicts before you take it.",
     points: ["Drag to aim, and drag the balls to wherever you like", "Choose the power, and where to hit the cue ball: follow, draw or side spin", "A live preview shows the white's path, the ghost ball and where each ball goes next", "Tap Shoot to watch it played, from above or from the player's eye", "Powered by the same physics engine as the drills"],
@@ -67,7 +67,7 @@ const guides: Guide[] = [
 const faqs = [
   ["When can I get it?", "CueIQ is heading to Android first. Follow the journey or get in touch and we will let you know when it is ready."],
   ["Do I need an account?", "No. CueIQ does not ask you to create one."],
-  ["Which rules does it use?", "CueIQ currently uses International Rules, with reds, yellows and the black. In the Analysis Centre you choose the rules and which of the balls are yours."],
+  ["Which rules does it use?", "CueIQ currently uses International Rules, with reds, yellows and the black. In the Analysis Centre you choose whether you are on reds or yellows."],
   ["Does it work without a photo?", "Yes. The Training Centre, the Shot Lab and the Match Centre do not need a photo at all, and they run on your phone. Only the Analysis Centre needs an internet connection, to read your photo."],
   ["How accurate is the table reading?", "No reading of a photo is perfect. CueIQ shows how confident it is, and you can check the reconstruction against the real table before you rely on the route."],
   ["What happens to my table photo?", "It is sent securely to CueIQ's analysis service, read, and turned into a result. CueIQ does not keep the photo. Match scores and drill progress stay on your phone."],
@@ -93,7 +93,7 @@ export function CueIqProductPage() {
         <p>Photograph a table and see the shot. Practise it with drills built on real physics. Try any shot yourself. Keep score when it counts.</p>
         <div className="button-row"><Link className="button cqButton" href="/contact">Follow the journey <span>↗</span></Link><a className="button cqGhost" href="#inside">See what&apos;s inside <span>↓</span></a></div>
       </div>
-      <div className="cqHeroVisual"><Duo priority screens={[shot("home", "The CueIQ home screen: Analysis, Training, Shot Lab and Match Centre"), shot("route-players-view", "A route around the table in the player's eye view, with the shot previewed")]} /></div>
+      <div className="cqHeroVisual"><Duo priority screens={[shot("home", "The CueIQ home screen: Analysis, Training, Shot Lab and Match Centre"), shot("route-players-view", "A planned route in the Analysis Centre, seen from the player's eye with the balls numbered in order")]} /></div>
     </div></section>
 
     <section className="cqStrip"><div className="container">{strip.map(item => <span key={item}>{item}</span>)}</div></section>
